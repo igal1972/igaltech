@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Rubik, Assistant } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { CookieConsent } from '@/components/cookie-consent'
 import { AccessibilityMenu } from '@/components/accessibility-menu'
 import { siteConfig } from '@/lib/site-config'
@@ -117,6 +118,7 @@ export default function RootLayout({
         {children}
         <AccessibilityMenu />
         <CookieConsent />
+        <SpeedInsights />
       </body>
     </html>
   )
