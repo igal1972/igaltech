@@ -15,6 +15,10 @@ export const siteConfig = {
   email: "info@igaltech.com",
   // מספר עוסק מורשה / ח.פ. — מוצג בתחתית האתר כשהשדה מלא
   businessId: "029266723",
+  // שם העוסק הרשום (בעל העסק)
+  ownerName: "יגאל שמשון",
+  // כתובת פיזית של העסק — מוצגת בתחתית האתר כשהשדה מלא
+  address: "",
   // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
   accessibilityCoordinator: "יגאל שמשון",
   accessibilityAuditDate: "10 באוקטובר 2026",
