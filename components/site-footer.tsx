@@ -74,7 +74,8 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-5 md:flex-row">
           <p className="text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {siteConfig.businessName}. כל הזכויות שמורות.
+            © {new Date().getFullYear()} {siteConfig.businessName}
+            {siteConfig.businessId ? ` (ע.מ. ${siteConfig.businessId})` : ""}. כל הזכויות שמורות.
           </p>
           <nav aria-label="קישורי מידע ומשפט" className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
             <Link href="/articles" className="text-xs text-muted-foreground transition-colors hover:text-primary hover:underline">מאמרים</Link>

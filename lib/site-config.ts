@@ -13,6 +13,11 @@ export const siteConfig = {
   // הודעה מוכנה מראש לוואטסאפ
   whatsappMessage: "שלום, הגעתי דרך האתר ואשמח לקבל פרטים ולתאם שירות.",
   email: "info@igaltech.com",
+  // מספר עוסק מורשה / ח.פ. — מוצג בתחתית האתר כשהשדה מלא
+  businessId: "029266723",
+  // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
+  accessibilityCoordinator: "יגאל",
+  accessibilityAuditDate: "10 באוקטובר 2026",
 }
 
 export function whatsappLink(message: string = siteConfig.whatsappMessage) {
