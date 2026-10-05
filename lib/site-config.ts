@@ -14,7 +14,7 @@ export const siteConfig = {
   whatsappMessage: "שלום, הגעתי דרך האתר ואשמח לקבל פרטים ולתאם שירות.",
   email: "info@igaltech.com",
   // מספר עוסק מורשה / ח.פ. — מוצג בתחתית האתר כשהשדה מלא
-  businessId: "",
+  businessId: "029266723",
   // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
   accessibilityCoordinator: "יגאל",
   accessibilityAuditDate: "10 באוקטובר 2026",
