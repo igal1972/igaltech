@@ -20,7 +20,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav aria-label="ניווט ראשי" className="hidden items-center gap-1 lg:flex">
           {services.map((s) => (
             <Link
               key={s.slug}

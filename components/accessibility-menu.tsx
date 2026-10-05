@@ -61,6 +61,7 @@ export function AccessibilityMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const [preferences, setPreferences] = useState(defaultPreferences)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const saved = readPreferences()
@@ -68,12 +69,20 @@ export function AccessibilityMenu() {
     applyPreferences(saved)
   }, [])
 
+  function closeMenu() {
+    setIsOpen(false)
+    triggerRef.current?.focus()
+  }
+
   useEffect(() => {
     if (!isOpen) return
     closeButtonRef.current?.focus()
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false)
+      if (event.key === "Escape") {
+        setIsOpen(false)
+        triggerRef.current?.focus()
+      }
     }
 
     window.addEventListener("keydown", closeOnEscape)
@@ -111,7 +120,7 @@ export function AccessibilityMenu() {
             <button
               ref={closeButtonRef}
               type="button"
-              onClick={() => setIsOpen(false)}
+              onClick={closeMenu}
               aria-label="סגירת תפריט הנגישות"
               className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
             >
@@ -161,6 +170,7 @@ export function AccessibilityMenu() {
       )}
 
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}

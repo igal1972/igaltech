@@ -41,7 +41,7 @@ export function ContactButtons({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] font-medium text-white shadow-sm transition-colors hover:bg-[#1fb457] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1fb457]",
+          "inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f7a3d] font-medium text-white shadow-sm transition-colors hover:bg-[#0b6331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f7a3d]",
           sizeClasses,
         )}
       >

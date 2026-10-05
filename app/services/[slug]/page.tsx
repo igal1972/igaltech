@@ -59,11 +59,11 @@ export default async function ServicePage({
       <JsonLd data={serviceSchema(service)} />
       <JsonLd data={breadcrumb} />
       <SiteHeader />
-      <main className="flex-1">
+      <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
         {/* Breadcrumb + hero */}
         <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-6xl px-4 py-4">
-            <nav className="flex items-center gap-1.5 text-sm text-muted-foreground">
+            <nav aria-label="פירורי לחם" className="flex items-center gap-1.5 text-sm text-muted-foreground">
               <Link href="/" className="transition-colors hover:text-primary">
                 דף הבית
               </Link>

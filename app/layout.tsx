@@ -116,6 +116,12 @@ export default function RootLayout({
       className={`${rubik.variable} ${assistant.variable} bg-background`}
     >
       <body className="font-sans antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:right-3 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-3 focus:font-medium focus:text-primary-foreground focus:shadow-lg focus:outline-2 focus:outline-offset-2 focus:outline-ring"
+        >
+          דילוג לתוכן הראשי
+        </a>
         {children}
         <AccessibilityMenu />
         <CookieConsent />
