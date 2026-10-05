@@ -82,6 +82,7 @@ export function SiteFooter() {
             <Link href="/accessibility" className="text-xs text-muted-foreground transition-colors hover:text-primary hover:underline">הצהרת נגישות</Link>
             <Link href="/privacy" className="text-xs text-muted-foreground transition-colors hover:text-primary hover:underline">מדיניות פרטיות</Link>
             <Link href="/terms" className="text-xs text-muted-foreground transition-colors hover:text-primary hover:underline">תקנון שימוש</Link>
+            <Link href="/terms#cancellation" className="text-xs text-muted-foreground transition-colors hover:text-primary hover:underline">ביטול עסקה</Link>
             <CookieSettingsButton />
           </nav>
         </div>
