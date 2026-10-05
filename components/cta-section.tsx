@@ -14,7 +14,7 @@ export function CtaSection({
         <h2 className="mx-auto max-w-2xl text-balance font-heading text-3xl font-bold md:text-4xl">
           {title}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-pretty text-primary-foreground/85">
+        <p className="mx-auto mt-4 max-w-xl text-pretty text-primary-foreground">
           {text ??
             `התקשרו עכשיו או שלחו הודעת וואטסאפ לקבלת ייעוץ והצעת מחיר ללא התחייבות. שירות ${siteConfig.serviceArea}.`}
         </p>

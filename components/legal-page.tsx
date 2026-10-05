@@ -14,7 +14,7 @@ export function LegalPage({ title, description, updatedAt, children }: LegalPage
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <header className="border-b border-border bg-secondary/60 py-14 md:py-20">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <p className="text-sm font-bold text-primary">מידע משפטי ושקיפות</p>

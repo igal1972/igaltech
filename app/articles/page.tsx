@@ -23,7 +23,7 @@ export default async function ArticlesPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
-      <main>
+      <main id="main-content" tabIndex={-1} className="focus:outline-none">
         <section className="border-b border-border bg-secondary/60 py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-4 text-center sm:px-6 lg:px-8">
             <div className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
