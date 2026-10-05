@@ -6,14 +6,16 @@ import { Analytics } from "@vercel/analytics/next"
 import { Cookie } from "lucide-react"
 
 const COOKIE_NAME = "igaltech_cookie_consent"
-type Consent = "approved"
+type Consent = "approved" | "rejected"
 
 function readConsent(): Consent | null {
   const match = document.cookie
     .split("; ")
     .find((entry) => entry.startsWith(`${COOKIE_NAME}=`))
   const value = match?.split("=")[1]
-  return value === "approved" || value === "analytics" ? "approved" : null
+  if (value === "approved" || value === "analytics") return "approved"
+  if (value === "rejected") return "rejected"
+  return null
 }
 
 export function CookieConsent() {
@@ -31,7 +33,13 @@ export function CookieConsent() {
   }, [])
 
   function saveConsent(value: Consent) {
+    const wasApproved = consent === "approved"
     document.cookie = `${COOKIE_NAME}=${value}; Max-Age=31536000; Path=/; SameSite=Lax; Secure`
+    // An already-loaded analytics script keeps running until the page reloads.
+    if (wasApproved && value === "rejected") {
+      window.location.reload()
+      return
+    }
     setConsent(value)
     setIsOpen(false)
   }
@@ -43,7 +51,6 @@ export function CookieConsent() {
         <section
           className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-2xl md:flex md:items-center md:gap-6"
           role="dialog"
-          aria-modal="true"
           aria-labelledby="cookie-title"
           aria-describedby="cookie-description"
         >
@@ -54,17 +61,24 @@ export function CookieConsent() {
             <div>
               <h2 id="cookie-title" className="font-heading text-lg font-bold">שימוש בעוגיות באתר</h2>
               <p id="cookie-description" className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                האתר משתמש בעוגיות חיוניות ובניתוח שימוש אנונימי-מצטבר לצורך תפעולו ושיפור חוויית הגלישה. המשך השימוש כפוף ל<Link href="/privacy" className="font-semibold text-primary hover:underline">מדיניות הפרטיות</Link>.
+                האתר משתמש בעוגיות חיוניות לתפעולו. בנוסף, נשמח להפעיל ניתוח שימוש אנונימי-מצטבר לשיפור האתר. כלי זה יופעל רק אם תאשרו, וניתן לשנות את הבחירה בכל עת דרך &quot;הגדרות עוגיות&quot; בתחתית העמוד. פרטים נוספים ב<Link href="/privacy" className="font-semibold text-primary hover:underline">מדיניות הפרטיות</Link>.
               </p>
             </div>
           </div>
-          <div className="mt-5 flex shrink-0 md:mt-0">
+          <div className="mt-5 flex shrink-0 gap-3 md:mt-0">
             <button
               type="button"
               onClick={() => saveConsent("approved")}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground hover:bg-primary/90"
             >
               אישור
+            </button>
+            <button
+              type="button"
+              onClick={() => saveConsent("rejected")}
+              className="rounded-lg border-2 border-primary px-5 py-2.5 text-sm font-bold text-primary hover:bg-secondary"
+            >
+              דחייה
             </button>
           </div>
         </section>
