@@ -59,15 +59,31 @@ export function SiteFooter() {
                 <span>וואטסאפ</span>
               </a>
             </li>
-            <li className="flex items-center gap-2">
-              <Mail className="size-4 text-primary" />
-              <span dir="ltr">{siteConfig.email}</span>
+            <li>
+              <a href={`mailto:${siteConfig.email}`} className="flex items-center gap-2 transition-colors hover:text-primary">
+                <Mail className="size-4 text-primary" />
+                <span dir="ltr">{siteConfig.email}</span>
+              </a>
             </li>
-            <li className="flex items-center gap-2">
-              <MapPin className="size-4 text-primary" />
-              <span>שירות {siteConfig.serviceArea}</span>
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+              <address className="not-italic">
+                {siteConfig.address ? `${siteConfig.address} · ` : ""}שירות {siteConfig.serviceArea}
+              </address>
             </li>
           </ul>
+          <dl className="mt-5 space-y-1 text-xs text-muted-foreground">
+            <div className="flex gap-1">
+              <dt>שם העוסק:</dt>
+              <dd className="text-foreground">{siteConfig.ownerName}</dd>
+            </div>
+            {siteConfig.businessId ? (
+              <div className="flex gap-1">
+                <dt>עוסק מורשה:</dt>
+                <dd className="text-foreground">{siteConfig.businessId}</dd>
+              </div>
+            ) : null}
+          </dl>
         </div>
       </div>
 
