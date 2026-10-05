@@ -18,7 +18,10 @@ export const siteConfig = {
   // שם העוסק הרשום (בעל העסק)
   ownerName: "יגאל שמשון",
   // כתובת פיזית של העסק — מוצגת בתחתית האתר כשהשדה מלא
-  address: "",
+  address: "דרך העצמאות 33, יהוד-מונוסון, 5630204",
+  streetAddress: "דרך העצמאות 33",
+  addressLocality: "יהוד-מונוסון",
+  postalCode: "5630204",
   // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
   accessibilityCoordinator: "יגאל שמשון",
   accessibilityAuditDate: "10 באוקטובר 2026",

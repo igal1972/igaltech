@@ -52,6 +52,9 @@ export const localBusinessSchema = {
   areaServed: { "@type": "Place", name: "מרכז הארץ, ישראל" },
   address: {
     "@type": "PostalAddress",
+    streetAddress: siteConfig.streetAddress,
+    addressLocality: siteConfig.addressLocality,
+    postalCode: siteConfig.postalCode,
     addressRegion: "מרכז",
     addressCountry: "IL",
   },
