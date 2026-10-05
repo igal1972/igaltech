@@ -16,7 +16,7 @@ export const siteConfig = {
   // מספר עוסק מורשה / ח.פ. — מוצג בתחתית האתר כשהשדה מלא
   businessId: "029266723",
   // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
-  accessibilityCoordinator: "יגאל",
+  accessibilityCoordinator: "יגאל שמשון",
   accessibilityAuditDate: "10 באוקטובר 2026",
 }
 
