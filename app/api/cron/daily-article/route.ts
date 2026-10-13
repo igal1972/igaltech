@@ -1,4 +1,4 @@
-import { generateDailyArticle } from "@/lib/generate-article"
+import { generateScheduledArticle } from "@/lib/generate-article"
 
 export const maxDuration = 300
 
@@ -18,7 +18,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const result = await generateDailyArticle()
+    const result = await generateScheduledArticle()
     return Response.json(result)
   } catch (error) {
     console.error("[daily-article] Publishing failed", error)

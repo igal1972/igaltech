@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight, Clock3 } from "lucide-react"
-import ReactMarkdown from "react-markdown"
+import { ArticleMarkdown } from "@/components/article-markdown"
 import { CtaSection } from "@/components/cta-section"
 import { FloatingContact } from "@/components/floating-contact"
 import { SiteFooter } from "@/components/site-footer"
@@ -116,7 +116,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
           <div className="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8">
             <div className="article-content text-foreground">
-              <ReactMarkdown>{normalizedContent}</ReactMarkdown>
+              <ArticleMarkdown content={normalizedContent} />
             </div>
 
             {article.faq.length > 0 && (
