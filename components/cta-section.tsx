@@ -2,7 +2,7 @@ import { ContactButtons } from "@/components/contact-buttons"
 import { siteConfig } from "@/lib/site-config"
 
 export function CtaSection({
-  title = "צריכים פתרון מחשוב או תקשורת?",
+  title = "צריכים טכנאי מחשבים ותקשורת לעסק או לבית?",
   text,
 }: {
   title?: string

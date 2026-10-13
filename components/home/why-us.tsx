@@ -8,13 +8,13 @@ const items = [
   },
   {
     icon: Zap,
-    title: "מענה מהיר",
-    text: "זמינות גבוהה והגעה מהירה כדי שהעסק והבית שלכם ימשיכו לעבוד.",
+    title: "מענה מהיר ושירות עד הבית",
+    text: "זמינות גבוהה והגעה מהירה במרכז הארץ, כדי שהעסק והבית שלכם ימשיכו לעבוד.",
   },
   {
     icon: Wrench,
-    title: "פתרון מקצה לקצה",
-    text: "מהתכנון וההתקנה ועד התחזוקה השוטפת — הכל מול איש מקצוע אחד.",
+    title: "פתרון IT מקצה לקצה",
+    text: "מתכנון תשתיות התקשורת וההתקנה ועד התחזוקה השוטפת — הכל מול איש מקצוע אחד.",
   },
   {
     icon: Headset,
@@ -29,10 +29,10 @@ export function WhyUs() {
       <div className="mx-auto max-w-6xl px-4 py-16 md:py-20">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-balance font-heading text-3xl font-bold text-foreground md:text-4xl">
-            למה לבחור בנו?
+            למה לבחור בטכנאי המחשבים והתקשורת שלנו?
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
-            שירות אמין שנותן לכם שקט נפשי, מהתקלה הקטנה ועד הפרויקט המורכב.
+            תמיכה טכנית אמינה לעסקים ולבית שנותנת לכם שקט נפשי, מהתקלה הקטנה ועד פרויקט התשתיות המורכב.
           </p>
         </div>
 
