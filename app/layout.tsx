@@ -29,9 +29,11 @@ export const metadata: Metadata = {
   description: siteDescription,
   applicationName: siteConfig.businessName,
   keywords: [
-    'טכנאי מחשבים מרכז',
+    'שירותי מחשוב ותקשורת',
+    'טכנאי מחשבים במרכז',
     'שירותי מחשוב לעסקים',
-    'ניהול רשת',
+    'ניהול רשת לעסקים',
+    'תמיכה טכנית לעסקים',
     'התקנת שרתים',
     'תשתיות תקשורת IP',
     'התקנת מצלמות אבטחה',

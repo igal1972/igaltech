@@ -14,12 +14,13 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            מחשוב, רשתות ואבטחה במקצועיות מלאה
+            שירותי מחשוב ותקשורת לעסקים ולבית {siteConfig.serviceArea}
           </h1>
 
           <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            מחשוב ותחנות עבודה, ניהול רשת, התקנת שרתים, תשתיות תקשורת IP,
-            מצלמות אבטחה וגיבוי בענן — לבית ולעסק, ליווי מקצועי ואישי מתחילת הפרויקט ועד התחזוקה השוטפת.
+            טכנאי מחשבים ותקשורת שמגיע אליכם: תחזוקת מחשבים ותחנות עבודה, ניהול רשת לעסקים,
+            התקנת שרתים, תשתיות תקשורת IP, התקנת מצלמות אבטחה וגיבוי בענן. ליווי מקצועי ואישי
+            מתחילת הפרויקט ועד התחזוקה השוטפת.
           </p>
 
           <ContactButtons className="mt-8" size="lg" />
@@ -44,7 +45,7 @@ export function Hero() {
           <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border shadow-xl shadow-primary/5">
             <Image
               src="/hero-it.webp"
-              alt="עמדת מחשוב ותחנות עבודה עם ארון תקשורת מסודר"
+              alt={`תחנות עבודה וארון תקשורת מסודר עם כבילת רשת ושרתים — שירותי מחשוב ותקשורת לעסקים ${siteConfig.serviceArea}`}
               fill
               priority
               fetchPriority="high"

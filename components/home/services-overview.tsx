@@ -7,10 +7,11 @@ export function ServicesOverview() {
     <section id="services" className="mx-auto max-w-6xl px-4 py-16 md:py-20">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-balance font-heading text-3xl font-bold text-foreground md:text-4xl">
-          התחומים שלנו
+          שירותי מחשוב, רשתות ואבטחת מידע לעסקים
         </h2>
         <p className="mt-4 text-pretty text-muted-foreground">
-          מגוון תחומי מחשוב ותקשורת תחת קורת גג אחת. בחרו תחום לפרטים מלאים.
+          כל פתרונות המחשוב והתקשורת לעסק ולבית תחת קורת גג אחת — מניהול רשת והתקנת שרתים ועד
+          מצלמות אבטחה וגיבוי בענן. בחרו תחום לפרטים מלאים.
         </p>
       </div>
 

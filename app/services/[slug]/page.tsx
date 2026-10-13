@@ -93,7 +93,7 @@ export default async function ServicePage({
             <div className="relative aspect-4/3 overflow-hidden rounded-2xl border border-border shadow-xl shadow-primary/5">
               <Image
                 src={service.image || "/placeholder.svg"}
-                alt={service.title}
+                alt={`${service.title} לעסקים ולבית ${siteConfig.serviceArea} — ${siteConfig.businessName}`}
                 fill
                 priority
                 className="object-cover"
