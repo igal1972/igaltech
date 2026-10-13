@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto"
-import { generateText, Output } from "ai"
-import { and, desc, eq, gte } from "drizzle-orm"
+import { put } from "@vercel/blob"
+import { generateImage, generateText, Output } from "ai"
+import { desc, eq } from "drizzle-orm"
 import { z } from "zod"
+import { articleChartSchema, type ArticleChartSpec } from "@/lib/article-charts"
 import { db } from "@/lib/db"
 import { blogPosts } from "@/lib/db/schema"
 
@@ -24,7 +26,43 @@ const articleSchema = z.object({
     question: z.string().min(10).max(120),
     answer: z.string().min(40).max(500),
   })).min(3).max(5),
+  charts: z.array(articleChartSchema).max(2),
+  imagePrompt: z.string().min(20).max(400),
+  imageAlt: z.string().min(10).max(160),
 })
+
+const PUBLISH_INTERVAL_DAYS = 10
+const DAY_MS = 86_400_000
+
+function embedMedia(content: string, charts: ArticleChartSpec[], image: { url: string; alt: string } | null) {
+  let result = content.replace(/\[\[chart-(\d+)\]\]/g, (_, index: string) => {
+    const chart = charts[Number(index) - 1]
+    return chart ? `\n\n\`\`\`chart\n${JSON.stringify(chart)}\n\`\`\`\n\n` : ""
+  })
+  const imageMarkdown = image ? `\n\n![${image.alt.replace(/[[\]]/g, "")}](${image.url})\n\n` : ""
+  result = result.includes("[[image]]") ? result.replace("[[image]]", imageMarkdown) : result
+  return result.replaceAll("[[image]]", "").trim()
+}
+
+async function createArticleImage(prompt: string, slug: string) {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) return null
+  try {
+    const { image } = await generateImage({
+      model: "openai/gpt-image-1-mini",
+      prompt: `${prompt}. Clean professional editorial illustration, soft blue and teal palette, no text, no letters, no logos, no watermarks.`,
+      size: "1536x1024",
+    })
+    const blob = await put(`articles/${slug}.png`, Buffer.from(image.uint8Array), {
+      access: "public",
+      contentType: "image/png",
+      addRandomSuffix: true,
+    })
+    return blob.url
+  } catch (error) {
+    console.error("[article] Image generation failed; publishing without image", error)
+    return null
+  }
+}
 
 function getIsraelDate() {
   return new Intl.DateTimeFormat("en-CA", {
@@ -35,20 +73,20 @@ function getIsraelDate() {
   }).format(new Date())
 }
 
-function startOfIsraelDay(dateString: string) {
-  return new Date(`${dateString}T00:00:00+03:00`)
-}
-
-export async function generateDailyArticle() {
+export async function generateScheduledArticle() {
   const dateString = getIsraelDate()
-  const dayStart = startOfIsraelDay(dateString)
-  const [existingToday] = await db
-    .select({ id: blogPosts.id, slug: blogPosts.slug })
+  const [latest] = await db
+    .select({ slug: blogPosts.slug, publishedAt: blogPosts.publishedAt })
     .from(blogPosts)
-    .where(and(eq(blogPosts.status, "published"), gte(blogPosts.publishedAt, dayStart)))
+    .where(eq(blogPosts.status, "published"))
+    .orderBy(desc(blogPosts.publishedAt))
     .limit(1)
 
-  if (existingToday) return { created: false, slug: existingToday.slug, reason: "already-published-today" }
+  // Cron runs daily; the small tolerance keeps the cadence at 10 days despite minor run-time drift.
+  if (latest && Date.now() - latest.publishedAt.getTime() < PUBLISH_INTERVAL_DAYS * DAY_MS - 2 * 3_600_000) {
+    const nextInDays = Math.ceil((latest.publishedAt.getTime() + PUBLISH_INTERVAL_DAYS * DAY_MS - Date.now()) / DAY_MS)
+    return { created: false, slug: latest.slug, reason: "interval-not-reached", nextInDays }
+  }
 
   const recent = await db
     .select({ title: blogPosts.title })
@@ -57,8 +95,8 @@ export async function generateDailyArticle() {
     .orderBy(desc(blogPosts.publishedAt))
     .limit(30)
 
-  const dayNumber = Math.floor(Date.now() / 86_400_000)
-  const topic = topics[dayNumber % topics.length]
+  const cycleNumber = Math.floor(Date.now() / (PUBLISH_INTERVAL_DAYS * DAY_MS))
+  const topic = topics[cycleNumber % topics.length]
   const result = await generateText({
     model: "google/gemini-3.5-flash",
     output: Output.object({ schema: articleSchema }),
@@ -69,7 +107,13 @@ export async function generateDailyArticle() {
 השתמש בניסוח עובדתי וברור, ללא הבטחות לא מבוססות וללא ניסיון לטעון לעמידה במדיניות פרסום כלשהי.
 חובה לכלול: פתיחה קצרה; 5–7 כותרות H2; צעדים או רשימות מעשיות; טעויות נפוצות; מתי כדאי להזמין איש מקצוע; סיכום עם הנעה עדינה לפנייה ליגאל טכנולוגיות.
 השתמש בביטויי חיפוש טבעיים ובהקשר מקומי רק כשזה מועיל. אל תחזור על נושאי המאמרים הקיימים: ${recent.map((item) => item.title).join(" | ")}.
-החזר גם תקציר, זמן קריאה, 4–8 ביטויי מפתח ו-3–5 שאלות ותשובות.`,
+החזר גם תקציר, זמן קריאה, 4–8 ביטויי מפתח ו-3–5 שאלות ותשובות.
+
+המחשה ויזואלית (לפי הצורך בלבד, כשהיא באמת מבהירה את התוכן):
+- טבלאות: כשיש השוואה בין אפשרויות, מפרט או צ'קליסט – הוסף טבלת Markdown (GFM) אחת או שתיים עם שורת כותרת.
+- תרשימים: עד 2 תרשימים בשדה charts (bar להשוואה, line למגמה לאורך זמן, pie לחלוקה), עם 2–8 נקודות נתונים ותוויות קצרות בעברית. השתמש רק בערכים המחשתיים או בהערכות סבירות, ובשדה caption ציין במפורש שמדובר בהמחשה או בהערכה כללית ולא בנתון רשמי. מקם כל תרשים בתוכן בשורה נפרדת עם הסמן [[chart-1]] או [[chart-2]] לפי הסדר.
+- תמונה: מקם בתוכן פעם אחת, בשורה נפרדת אחרי הפסקה הראשונה של אחד הסעיפים, את הסמן [[image]]. בשדה imagePrompt תאר באנגלית איור מקצועי מתאים לנושא (ללא טקסט בתמונה), ובשדה imageAlt כתוב תיאור קצר בעברית של התמונה.
+אסור להשתמש בבלוקי קוד (\`\`\`) בתוכן.`,
   })
 
   const article = result.output
@@ -80,6 +124,8 @@ export async function generateDailyArticle() {
 
   const hash = createHash("sha256").update(`${dateString}-${article.title}`).digest("hex").slice(0, 8)
   const slug = `${dateString}-${topic.serviceSlug}-${hash}`
+  const imageUrl = await createArticleImage(article.imagePrompt, slug)
+  const content = embedMedia(article.content, article.charts, imageUrl ? { url: imageUrl, alt: article.imageAlt } : null)
   const [inserted] = await db
     .insert(blogPosts)
     .values({
@@ -87,7 +133,7 @@ export async function generateDailyArticle() {
       title: article.title,
       excerpt: article.excerpt,
       category: topic.category,
-      content: article.content,
+      content,
       readTime: article.readTime,
       serviceSlug: topic.serviceSlug,
       keywords: article.keywords,

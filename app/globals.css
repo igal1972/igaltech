@@ -246,5 +246,25 @@ html.a11y-underline-links a {
   .legal-content a {
     @apply font-semibold text-primary underline underline-offset-4;
   }
+
+  .article-content table {
+    @apply w-full min-w-[32rem] border-collapse text-right text-sm;
+  }
+
+  .article-content thead {
+    @apply bg-secondary;
+  }
+
+  .article-content th {
+    @apply px-4 py-3 font-heading font-bold text-foreground;
+  }
+
+  .article-content td {
+    @apply border-t border-border px-4 py-3 align-top leading-7 text-foreground/85;
+  }
+
+  .article-content tbody tr:nth-child(even) {
+    @apply bg-secondary/40;
+  }
 }
 
