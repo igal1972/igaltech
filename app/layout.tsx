@@ -3,6 +3,7 @@ import { Rubik, Assistant } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { CookieConsent } from '@/components/cookie-consent'
 import { AccessibilityMenu } from '@/components/accessibility-menu'
+import { ContactClickTracker } from '@/components/contact-click-tracker'
 import { siteConfig } from '@/lib/site-config'
 import './globals.css'
 
@@ -128,6 +129,7 @@ export default function RootLayout({
         <AccessibilityMenu />
         <CookieConsent />
         <SpeedInsights />
+        <ContactClickTracker />
       </body>
     </html>
   )
