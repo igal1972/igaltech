@@ -26,3 +26,15 @@ export const blogPosts = pgTable(
 )
 
 export type BlogPost = typeof blogPosts.$inferSelect
+
+export const contactClicks = pgTable(
+  "contact_clicks",
+  {
+    id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+    channel: text("channel").$type<"whatsapp" | "phone">().notNull(),
+    placement: text("placement").notNull(),
+    pagePath: text("page_path").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index("contact_clicks_created_at_idx").on(table.createdAt)],
+)
