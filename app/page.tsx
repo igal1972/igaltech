@@ -10,9 +10,9 @@ import { JsonLd, localBusinessSchema } from "@/components/json-ld"
 import { services } from "@/lib/services"
 import { siteConfig } from "@/lib/site-config"
 
-const homeTitle = `שירותי מחשוב ותקשורת לעסקים ${siteConfig.serviceArea} | ${siteConfig.businessName}`
+const homeTitle = `טכנאי מחשבים, רשתות, תשתיות תקשורת ומצלמות אבטחה ${siteConfig.serviceArea} | ${siteConfig.businessName}`
 const homeDescription =
-  "טכנאי מחשבים ותקשורת לעסק ולבית במרכז: ניהול רשת, התקנת שרתים, מצלמות אבטחה וגיבוי בענן. התקשרו או שלחו וואטסאפ להצעת מחיר ללא התחייבות."
+  "טכנאי מחשבים ותקשורת לעסק ולבית במרכז: ניהול רשת, התקנת שרתים, תשתיות תקשורת, מצלמות אבטחה וגיבוי בענן. התקשרו או שלחו וואטסאפ להצעת מחיר ללא התחייבות."
 
 export const metadata: Metadata = {
   title: { absolute: homeTitle },

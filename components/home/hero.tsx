@@ -14,13 +14,14 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            שירותי מחשוב ותקשורת לעסקים ולבית {siteConfig.serviceArea}
+            טכנאי מחשבים, רשתות, שרתים, תשתיות תקשורת ומצלמות אבטחה {siteConfig.serviceArea}
           </h1>
 
           <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            טכנאי מחשבים ותקשורת שמגיע אליכם: תחזוקת מחשבים ותחנות עבודה, ניהול רשת לעסקים,
-            התקנת שרתים, תשתיות תקשורת IP, התקנת מצלמות אבטחה וגיבוי בענן. ליווי מקצועי ואישי
-            מתחילת הפרויקט ועד התחזוקה השוטפת.
+            {siteConfig.businessName} מספקת שירותי מחשוב ותקשורת לעסקים ולבתים {siteConfig.serviceArea}:
+            תיקון ותחזוקת מחשבים ותחנות עבודה, הקמה וניהול של רשתות מחשבים, התקנת שרתים,
+            תשתיות תקשורת IP, התקנת מצלמות אבטחה וגיבוי בענן. טכנאי שמגיע אליכם, עם ליווי
+            מקצועי ואישי מתחילת הפרויקט ועד התחזוקה השוטפת.
           </p>
 
           <ContactButtons className="mt-8" size="lg" />
