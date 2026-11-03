@@ -14,7 +14,7 @@ export function Hero() {
           </span>
 
           <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            טכנאי מחשבים, רשתות, שרתים, תשתיות תקשורת ומצלמות אבטחה {siteConfig.serviceArea}
+            טכנאי מחשבים ומנהל רשת, טכנאי תשתיות תקשורת, ומתקין מצלמות אבטחה {siteConfig.serviceArea}
           </h1>
 
           <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
