@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Analytics } from "@vercel/analytics/next"
 import { Cookie } from "lucide-react"
+import { GoogleTag } from "@/components/google-tag"
 
 const COOKIE_NAME = "igaltech_cookie_consent"
 type Consent = "approved" | "rejected"
@@ -47,6 +48,7 @@ export function CookieConsent() {
   return (
     <>
       {process.env.NODE_ENV === "production" && consent === "approved" && <Analytics />}
+      {consent === "approved" && <GoogleTag />}
       {isOpen && (
         <section
           className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-2xl md:flex md:items-center md:gap-6"
