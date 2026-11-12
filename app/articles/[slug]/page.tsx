@@ -23,8 +23,8 @@ const dateFormatter = new Intl.DateTimeFormat("he-IL", {
 const categoryServiceSlugs: Record<string, string> = {
   "טכנאי מחשבים": "computers",
   "טכנאות מחשבים": "computers",
-  "ניהול רשת": "network",
-  "התקנת שרתים": "servers",
+  "ניהול רשת": "computers",
+  "התקנת שרתים": "computers",
   "תשתיות תקשורת IP": "ip-infrastructure",
   "מצלמות אבטחה": "security-cameras",
   "גיבוי בענן": "cloud-backup",
@@ -57,7 +57,8 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = await getArticleBySlug(slug)
   if (!article) notFound()
 
-  const serviceSlug = article.serviceSlug ?? categoryServiceSlugs[article.category]
+  const storedSlug = article.serviceSlug ?? categoryServiceSlugs[article.category]
+  const serviceSlug = storedSlug === "network" || storedSlug === "servers" ? "computers" : storedSlug
   const service = services.find((item) => item.slug === serviceSlug)
   const normalizedContent = normalizeArticleContent(article.content)
   const pageUrl = `${siteConfig.siteUrl}/articles/${article.slug}`

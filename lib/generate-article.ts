@@ -9,8 +9,8 @@ import { blogPosts } from "@/lib/db/schema"
 
 const topics = [
   { category: "מחשוב ותחנות עבודה", serviceSlug: "computers", focus: "תחזוקת מחשבים ותחנות עבודה, איתור תקלות ושיפור ביצועים לבית ולעסק" },
-  { category: "ניהול רשת", serviceSlug: "network", focus: "יציבות רשת, Wi-Fi ואבטחת רשת לעסק" },
-  { category: "התקנת שרתים", serviceSlug: "servers", focus: "תכנון שרתים, תחזוקה והמשכיות עסקית" },
+  { category: "ניהול רשת", serviceSlug: "computers", focus: "יציבות רשת, Wi-Fi ואבטחת רשת לעסק" },
+  { category: "התקנת שרתים", serviceSlug: "computers", focus: "תכנון שרתים, תחזוקה והמשכיות עסקית" },
   { category: "תשתיות תקשורת IP", serviceSlug: "ip-infrastructure", focus: "כבילה, נקודות תקשורת ותכנון תשתית" },
   { category: "מצלמות אבטחה", serviceSlug: "security-cameras", focus: "בחירת מצלמות, מיקום, הקלטה וגישה מאובטחת" },
   { category: "גיבוי בענן", serviceSlug: "cloud-backup", focus: "גיבוי, שחזור, הצפנה והגנה מכופרה" },
