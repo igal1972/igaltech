@@ -1,4 +1,5 @@
-import { Phone } from "lucide-react"
+import Link from "next/link"
+import { CalendarCheck, Phone } from "lucide-react"
 import { WhatsappIcon } from "@/components/whatsapp-icon"
 import { siteConfig, whatsappLink } from "@/lib/site-config"
 import { cn } from "@/lib/utils"
@@ -23,12 +24,17 @@ export function ContactButtons({
       ? "bg-primary-foreground text-primary hover:bg-primary-foreground/90 focus-visible:outline-primary-foreground"
       : "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:outline-ring"
 
+  const bookClasses =
+    variant === "onPrimary"
+      ? "border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10 focus-visible:outline-primary-foreground"
+      : "border-primary bg-background text-primary hover:bg-primary/5 focus-visible:outline-ring"
+
   return (
-    <div className={cn("flex flex-col gap-3 sm:flex-row", className)}>
+    <div className={cn("flex flex-col gap-3 sm:flex-row sm:flex-wrap", className)}>
       <a
         href={`tel:${siteConfig.phoneTel}`}
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl font-medium shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-medium shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
           callClasses,
           sizeClasses,
         )}
@@ -41,13 +47,24 @@ export function ContactButtons({
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
-          "inline-flex items-center justify-center gap-2 rounded-xl bg-[#0f7a3d] font-medium text-white shadow-sm transition-colors hover:bg-[#0b6331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f7a3d]",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#0f7a3d] font-medium text-white shadow-sm transition-colors hover:bg-[#0b6331] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0f7a3d]",
           sizeClasses,
         )}
       >
         <WhatsappIcon className="size-5" />
         <span>שליחת הודעת וואטסאפ</span>
       </a>
+      <Link
+        href="/book"
+        className={cn(
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 font-medium shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+          bookClasses,
+          sizeClasses,
+        )}
+      >
+        <CalendarCheck className="size-5" aria-hidden="true" />
+        <span>הזמנת שירות</span>
+      </Link>
     </div>
   )
 }

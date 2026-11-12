@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import { ShieldCheck, Clock, MapPin, CalendarCheck } from "lucide-react"
 import { ContactButtons } from "@/components/contact-buttons"
 import { formatShekel, siteConfig } from "@/lib/site-config"
@@ -27,13 +26,10 @@ export function Hero() {
 
           <ContactButtons className="mt-8" size="lg" />
 
-          <Link
-            href="/book"
-            className="mt-4 inline-flex items-center gap-2 text-base font-semibold text-primary underline-offset-4 hover:underline"
-          >
-            <CalendarCheck className="size-5" aria-hidden="true" />
-            הזמנת טכנאי אונליין · ביקור ואבחון {formatShekel(siteConfig.diagnosisFee)} + מע״מ
-          </Link>
+          <p className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+            <CalendarCheck className="size-4 text-primary" aria-hidden="true" />
+            הזמנת טכנאי אונליין · ביקור ואבחון {formatShekel(siteConfig.diagnosisFee)} + מע״מ, מתקזז בעלות התיקון
+          </p>
 
           <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-muted-foreground">
             <li className="flex items-center gap-2">

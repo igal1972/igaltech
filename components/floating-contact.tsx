@@ -1,4 +1,5 @@
-import { Phone } from "lucide-react"
+import Link from "next/link"
+import { CalendarCheck, Phone } from "lucide-react"
 import { WhatsappIcon } from "@/components/whatsapp-icon"
 import { siteConfig, whatsappLink } from "@/lib/site-config"
 
@@ -21,6 +22,13 @@ export function FloatingContact() {
       >
         <Phone className="size-6" aria-hidden="true" />
       </a>
+      <Link
+        href="/book"
+        aria-label="הזמנת שירות טכנאי"
+        className="flex size-14 items-center justify-center rounded-full border-2 border-primary bg-background text-primary shadow-lg shadow-primary/20 transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <CalendarCheck className="size-6" aria-hidden="true" />
+      </Link>
     </aside>
   )
 }
