@@ -15,6 +15,8 @@ const nextConfig = {
         destination: "/",
         permanent: true,
       },
+      { source: "/services/network", destination: "/services/computers", permanent: true },
+      { source: "/services/servers", destination: "/services/computers", permanent: true },
     ]
   },
   async headers() {
