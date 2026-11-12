@@ -4,6 +4,8 @@ import { LoginForm } from "@/components/admin/login-form"
 import { StatsDashboard } from "@/components/admin/stats-dashboard"
 import { isAdminAuthenticated, isAdminConfigured } from "@/lib/admin-auth"
 import { getContactStats } from "@/lib/contact-stats"
+import { getRecentServiceRequests } from "@/lib/service-requests"
+import { ServiceRequestsList } from "@/components/admin/service-requests-list"
 import { logout } from "./actions"
 
 export const metadata: Metadata = {
@@ -32,7 +34,7 @@ export default async function AdminPage() {
     )
   }
 
-  const stats = await getContactStats()
+  const [stats, requests] = await Promise.all([getContactStats(), getRecentServiceRequests()])
 
   return (
     <AdminShell>
@@ -52,7 +54,10 @@ export default async function AdminPage() {
           </button>
         </form>
       </div>
-      <StatsDashboard stats={stats} />
+      <div className="flex flex-col gap-6">
+        <ServiceRequestsList requests={requests} />
+        <StatsDashboard stats={stats} />
+      </div>
     </AdminShell>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { BookOpenText, Menu, X } from "lucide-react"
+import { BookOpenText, CalendarCheck, Menu, X } from "lucide-react"
 import { useState } from "react"
 import { services } from "@/lib/services"
 
@@ -28,6 +28,14 @@ export function MobileNavigation() {
           className="absolute inset-x-0 top-16 border-b border-border bg-background px-4 py-4 shadow-lg"
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-1">
+            <Link
+              href="/book"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-3 rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+            >
+              <CalendarCheck className="size-5" aria-hidden="true" />
+              הזמנת שירות טכנאי
+            </Link>
             <Link
               href="/articles"
               onClick={() => setIsOpen(false)}

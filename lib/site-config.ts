@@ -25,6 +25,24 @@ export const siteConfig = {
   // שם רכז הנגישות, כנדרש בהצהרת הנגישות לפי תקנות הנגישות
   accessibilityCoordinator: "יגאל שמשון",
   accessibilityAuditDate: "10 באוקטובר 2026",
+  // עלות ביקור ואבחון תקלה בש"ח לפני מע"מ — מתקזזת מעלות התיקון
+  diagnosisFee: 300,
+  // שיעור המע"מ בישראל
+  vatRate: 0.18,
+}
+
+export function diagnosisFeeBreakdown() {
+  const net = siteConfig.diagnosisFee
+  const vat = Math.round(net * siteConfig.vatRate * 100) / 100
+  return { net, vat, total: net + vat, vatPercent: Math.round(siteConfig.vatRate * 100) }
+}
+
+export function formatShekel(amount: number) {
+  return new Intl.NumberFormat("he-IL", {
+    style: "currency",
+    currency: "ILS",
+    maximumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+  }).format(amount)
 }
 
 export function whatsappLink(message: string = siteConfig.whatsappMessage) {
