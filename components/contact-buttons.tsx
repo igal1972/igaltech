@@ -26,8 +26,8 @@ export function ContactButtons({
 
   const bookClasses =
     variant === "onPrimary"
-      ? "border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10 focus-visible:outline-primary-foreground"
-      : "border-primary bg-background text-primary hover:bg-primary/5 focus-visible:outline-ring"
+      ? "focus-visible:outline-primary-foreground"
+      : "focus-visible:outline-[#c2410c]"
 
   return (
     <div className={cn("flex flex-col gap-3 sm:flex-row sm:flex-wrap", className)}>
@@ -57,7 +57,7 @@ export function ContactButtons({
       <Link
         href="/book"
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl border-2 font-medium shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-[#c2410c] font-semibold text-white shadow-md shadow-[#c2410c]/30 transition-colors hover:bg-[#9a3412] focus-visible:outline-2 focus-visible:outline-offset-2",
           bookClasses,
           sizeClasses,
         )}

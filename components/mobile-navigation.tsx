@@ -31,7 +31,7 @@ export function MobileNavigation() {
             <Link
               href="/book"
               onClick={() => setIsOpen(false)}
-              className="flex items-center gap-3 rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
+              className="flex items-center gap-3 rounded-lg bg-[#c2410c] px-4 py-3 font-semibold text-white transition-colors hover:bg-[#9a3412]"
             >
               <CalendarCheck className="size-5" aria-hidden="true" />
               הזמנת שירות טכנאי
