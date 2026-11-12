@@ -38,9 +38,9 @@ export function SiteHeader() {
           </Link>
           <Link
             href="/book"
-            className="rounded-md px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
-          >
-            הזמנת שירות
+className="rounded-md bg-[#c2410c] px-3 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#9a3412]"
+                >
+                  הזמנת שירות
           </Link>
         </nav>
 

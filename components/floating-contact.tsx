@@ -25,7 +25,7 @@ export function FloatingContact() {
       <Link
         href="/book"
         aria-label="הזמנת שירות טכנאי"
-        className="flex size-14 items-center justify-center rounded-full border-2 border-primary bg-background text-primary shadow-lg shadow-primary/20 transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        className="flex size-14 items-center justify-center rounded-full bg-[#c2410c] text-white shadow-lg shadow-[#c2410c]/30 transition-transform hover:scale-105 hover:bg-[#9a3412] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c2410c]"
       >
         <CalendarCheck className="size-6" aria-hidden="true" />
       </Link>
