@@ -36,6 +36,12 @@ export function SiteHeader() {
           >
             מאמרים
           </Link>
+          <Link
+            href="/book"
+            className="rounded-md px-3 py-2 text-sm font-semibold text-primary transition-colors hover:bg-secondary"
+          >
+            הזמנת שירות
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
