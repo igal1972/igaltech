@@ -1,7 +1,7 @@
 "use server"
 
 import { z } from "zod"
-import { pool } from "@/lib/db"
+import { sendBookingEmail } from "@/lib/send-booking-email"
 import { services } from "@/lib/services"
 
 export type BookingField =
@@ -89,33 +89,12 @@ export async function submitServiceRequest(_prev: BookingState, formData: FormDa
   const data = parsed.data
 
   try {
-    const recent = await pool.query(
-      "select count(*)::int as n from service_requests where phone = $1 and created_at > now() - interval '1 hour'",
-      [data.phone],
-    )
-    if (recent.rows[0].n >= 3) {
-      return { values: raw, message: "כבר התקבלו מכם מספר הזמנות בשעה האחרונה. ניצור איתכם קשר בהקדם." }
-    }
-
-    await pool.query(
-      `insert into service_requests
-        (full_name, phone, email, city, address, service_slug, preferred_date, time_window, description, marketing_consent)
-       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
-      [
-        data.fullName,
-        data.phone,
-        data.email || null,
-        data.city,
-        data.address,
-        data.serviceSlug,
-        data.preferredDate || null,
-        data.timeWindow,
-        data.description,
-        data.marketingConsent === "on",
-      ],
-    )
+    await sendBookingEmail({
+      ...data,
+      marketingConsent: data.marketingConsent === "on",
+    })
   } catch (error) {
-    console.error("Failed to save service request", error)
+    console.error("Failed to email service request", error)
     return { values: raw, message: "אירעה שגיאה בשליחת ההזמנה. נסו שוב או התקשרו אלינו." }
   }
 
