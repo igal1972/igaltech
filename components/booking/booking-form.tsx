@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { useActionState } from "react"
-import { CheckCircle2, Loader2 } from "lucide-react"
+import { CheckCircle2, Loader2, MessageCircle } from "lucide-react"
+import { whatsappLink } from "@/lib/site-config"
 import { submitServiceRequest, type BookingField, type BookingState } from "@/app/book/actions"
 import { cn } from "@/lib/utils"
 
@@ -91,6 +92,20 @@ export function BookingForm({
           תודה! נחזור אליכם בהקדם בטלפון כדי לתאם מועד מדויק לביקור הטכנאי. עלות הביקור והאבחון ({feeLabel})
           תשולם במקום ותקוזז מעלות התיקון אם תאשרו את ביצועו.
         </p>
+        {state.whatsappText && (
+          <a
+            href={whatsappLink(state.whatsappText)}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="whatsapp"
+            data-placement="booking-success"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 text-base font-medium text-[#0b3d1f] shadow-sm transition-colors hover:bg-[#1ebe5b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            <MessageCircle className="size-5" aria-hidden="true" />
+            שליחת פרטי ההזמנה גם בוואטסאפ
+            <span className="sr-only"> (נפתח בחלון חדש)</span>
+          </a>
+        )}
         <button
           type="button"
           onClick={() => window.location.reload()}
