@@ -18,7 +18,6 @@ export type BookingField =
 
 export type BookingState = {
   ok?: boolean
-  whatsappText?: string
   message?: string
   errors?: Partial<Record<BookingField, string>>
   values?: Partial<Record<BookingField | "marketingConsent", string>>
@@ -99,29 +98,5 @@ export async function submitServiceRequest(_prev: BookingState, formData: FormDa
     return { values: raw, message: "אירעה שגיאה בשליחת ההזמנה. נסו שוב או התקשרו אלינו." }
   }
 
-  return { ok: true, whatsappText: buildWhatsappText(data) }
-}
-
-const timeWindowLabels: Record<(typeof timeWindows)[number], string> = {
-  morning: "בוקר (08:00–12:00)",
-  noon: "צהריים (12:00–15:00)",
-  afternoon: "אחר הצהריים (15:00–19:00)",
-  flexible: "גמיש",
-}
-
-function buildWhatsappText(data: z.infer<typeof schema>) {
-  const serviceTitle =
-    data.serviceSlug === "other" ? "אחר" : (services.find((s) => s.slug === data.serviceSlug)?.title ?? data.serviceSlug)
-  const date = data.preferredDate ? data.preferredDate.split("-").reverse().join("/") : "גמיש"
-
-  return [
-    "שלום, שלחתי עכשיו הזמנת שירות דרך האתר:",
-    `שם: ${data.fullName}`,
-    `טלפון: ${data.phone}`,
-    `כתובת: ${data.address}, ${data.city}`,
-    `שירות: ${serviceTitle}`,
-    `תאריך מועדף: ${date}`,
-    `שעות: ${timeWindowLabels[data.timeWindow]}`,
-    `תיאור: ${data.description}`,
-  ].join("\n")
+  return { ok: true }
 }
