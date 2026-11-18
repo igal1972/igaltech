@@ -13,9 +13,13 @@ export function Hero() {
             פעילות {siteConfig.serviceArea} · לבית ולעסק
           </span>
 
-          <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            טכנאי מחשבים ורשתות, טכנאי תשתיות תקשורת, ומתקין מצלמות אבטחה {siteConfig.serviceArea}
+          <h1 className="mt-5 font-heading text-3xl font-bold leading-[1.2] tracking-tight text-foreground sm:text-4xl lg:text-[2.6rem]">
+            <span className="block">טכנאי מחשבים ורשתות,</span>{" "}
+            <span className="block">טכנאי תשתיות תקשורת,</span>{" "}
+            <span className="block">ומתקין מצלמות אבטחה</span>{" "}
+            <span className="mt-1 block text-primary">{siteConfig.serviceArea}</span>
           </h1>
+          <div className="mt-5 h-1 w-16 rounded-full bg-primary" aria-hidden="true" />
 
           <p className="mt-5 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
             {siteConfig.businessName} מספקת שירותי מחשוב ותקשורת לעסקים ולבתים {siteConfig.serviceArea}:
