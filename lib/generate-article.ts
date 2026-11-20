@@ -45,7 +45,8 @@ function embedMedia(content: string, charts: ArticleChartSpec[], image: { url: s
 }
 
 async function createArticleImage(prompt: string, slug: string) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) return null
+  const hasOidc = Boolean(process.env.BLOB_STORE_ID && process.env.VERCEL_OIDC_TOKEN)
+  if (!hasOidc && !process.env.BLOB_READ_WRITE_TOKEN) return null
   try {
     const { image } = await generateImage({
       model: "openai/gpt-image-1-mini",
